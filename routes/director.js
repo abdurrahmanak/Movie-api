@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const Director = require('../model/Director');
+const { use } = require('.');
 
 router.post('/', (req, res, next) =>{
     const director = new Director(req.body);
@@ -111,5 +112,29 @@ router.get('/:director_id',(req,res,next)=>{
     }).catch((err)=>{
         res.json(err);
     })
+});
+// update
+router.put('/:director_id',(req,res,next)=>{
+    const promise = Director.findByIdAndUpdate(
+        req.params.director_id,
+        req.body,
+        {
+            new:true
+        }
+    );
+    promise.then((data)=>{
+        res.json(data);
+    }).catch((err)=>{
+        res.json(err);
+    });
+});
+// delete
+router.delete('/:director_id',(req,res,next)=>{
+    const promise = Director.findByIdAndRemove(req.params.director_id);
+    promise.then((data)=>{
+        res.json(data);
+    }).catch((err)=>{
+        res.json(err);
+    });
 });
 module.exports = router;
