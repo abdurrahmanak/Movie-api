@@ -12,7 +12,7 @@ describe('Director tests', () => {
 	before('Get Token', (done) => {
 		chai.request(server)
 			.post('/authenticate')
-			.send({username: 'mseven', password: '12345'})
+			.send({username:'hira',password:'123456'})
 			.end((err, res) => {
 				if (err)
 					throw err;
