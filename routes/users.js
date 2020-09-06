@@ -6,6 +6,11 @@ const jwt = require('jsonwebtoken');
 const User = require('../model/Users');
 const app = require('../app');
 
+router.get('/', (req, res, next) => {
+  res.render('index', { title: 'Express' });
+});
+
+
 /* GET users listing. */
 router.post('/', (req, res, next) =>{
   const {username,password} = req.body;
