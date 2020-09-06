@@ -9,18 +9,15 @@ chai.use(chaiHttp);
 let token, directorId;
 
 describe('Director tests', () => {
-	before('Get Token', (done) => {
-		chai.request(server)
-			.post('/authenticate')
-			.send({username:'hira',password:'123456'})
-			.end((err, res) => {
-				if (err)
-					throw err;
-
-				token = res.body.token;
-				done();
-			});
-	});
+	before((done)=>{
+        chai.request(server)
+        .post('/authenticate')
+        .send({username:'hira',password:'123456'})
+        .end((err,res)=>{
+            token=res.body.token;
+            done();
+        });
+    });
 
 	describe('/GET Directors', () => {
 		it('Get all directors records', (done) => {
